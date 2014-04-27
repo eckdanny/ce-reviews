@@ -1,0 +1,11 @@
+{% if suppliers %}
+  <ul>
+  {% for supplier in suppliers %}
+    <li>
+      <h3>{{ supplier.name }}</h3>
+      <a href="{% url 'customer_reviews:supplier_reviews' supplier.slug %}">Reviews</a>
+    </li>
+  {% endfor %}
+{% else %}
+  <p>There aren't any suppliers to review yet!</p>
+{% endif %}
