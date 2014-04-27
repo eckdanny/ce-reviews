@@ -1,4 +1,5 @@
 {% if reviews %}
+  <h3>Reviews for {{ supplier.name }}</h3>
   <ul>
   {% for review in reviews %}
     <li>
@@ -8,5 +9,7 @@
     </li>
   {% endfor %}
 {% else %}
-  <p>There aren't any reviews yet!</p>
+  <p>There aren't any published reviews for {{ supplier.name }} yet!</p>
 {% endif %}
+<p>Write a review <a href="/reviews/{{ supplier.slug }}/write/">here</a>!</p>
+<p>Got back to <a href="/reviews/">suppliers</a></p>

@@ -54,3 +54,5 @@ docs/_build/
 
 # Main includes [?]
 /include
+
+/.idea

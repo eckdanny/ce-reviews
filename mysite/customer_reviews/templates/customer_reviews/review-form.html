@@ -1,1 +1,33 @@
-Please enter a review
+Please enter a review for {{ supplier.name }}
+
+{% if errors %}<p>{{ errors }}</p>{% endif %}
+
+<form action="{% url 'customer_reviews:supplier_review_create' supplier.slug %}"
+      method='POST'>
+  {% csrf_token %}
+  <fieldset>
+    <legend>Rating</legend>
+    {% for value, string in choices %}
+    <label>
+      <input type="radio"
+             name="rating"
+             {% if form_data.rating %}
+                {%if form_data.rating == string %}
+                    checked="checked"
+                {% endif %}
+             {% endif %}
+             value="{{ value }}">
+      {{ string }}
+    </label><br>
+  {% endfor %}
+  </fieldset>
+  <textarea name="review"
+            placeholder="Enter your Review...">{% if form_data.review %}{{ form_data.review }}{% endif %}</textarea>
+  <label>Your Name:
+    <input type="text"
+           name="author"
+           value="{%if form_data.author %}{{ form_data.author }}{% endif %}"
+           placeholder="Your name">
+  </label>
+  <button type="submit">Submit</button>
+</form>
