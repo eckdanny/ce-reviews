@@ -51,6 +51,7 @@ def supplier_review_create(request, supplier_slug):
             })
         else:
             # Submission was successful
+            c.save()
             return HttpResponseRedirect(reverse('customer_reviews:supplier_reviews', args=(supplier_slug,)))
     else:
         # Serve up the form

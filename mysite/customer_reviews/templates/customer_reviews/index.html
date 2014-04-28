@@ -1,11 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Suppliers{% endblock %}
+
+{% block content %}
 {% if suppliers %}
-  <ul>
+  <ul style="list-style-type: none;">
   {% for supplier in suppliers %}
     <li>
       <h3>{{ supplier.name }}</h3>
-      <a href="{% url 'customer_reviews:supplier_reviews' supplier.slug %}">Reviews</a>
+      <p><a class="btn btn-primary"
+            href="{% url 'customer_reviews:supplier_reviews' supplier.slug %}"
+            role="button">Reviews</a></p>
     </li>
+    <hr>
   {% endfor %}
 {% else %}
   <p>There aren't any suppliers to review yet!</p>
 {% endif %}
+{% endblock %}

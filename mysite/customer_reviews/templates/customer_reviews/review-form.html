@@ -1,4 +1,10 @@
-Please enter a review for {{ supplier.name }}
+{% extends "base.html" %}
+
+{% block title %}Review {{ supplier.name }}{% endblock %}
+
+{% block content %}
+
+<h3>Review {{ supplier.name }}</h3>
 
 {% if errors %}<p>{{ errors }}</p>{% endif %}
 
@@ -8,7 +14,7 @@ Please enter a review for {{ supplier.name }}
   <fieldset>
     <legend>Rating</legend>
     {% for value, string in choices %}
-    <label>
+    <label style="margin-right: 5em;">
       <input type="radio"
              name="rating"
              {% if form_data.rating %}
@@ -18,16 +24,26 @@ Please enter a review for {{ supplier.name }}
              {% endif %}
              value="{{ value }}">
       {{ string }}
-    </label><br>
+    </label>
   {% endfor %}
   </fieldset>
+    <br>
   <textarea name="review"
+            class="form-control"
+            rows="5"
             placeholder="Enter your Review...">{% if form_data.review %}{{ form_data.review }}{% endif %}</textarea>
-  <label>Your Name:
+  <br>
+    <fieldset>
+          <label>Your Name:
     <input type="text"
+           class="form-control"
            name="author"
            value="{%if form_data.author %}{{ form_data.author }}{% endif %}"
            placeholder="Your name">
   </label>
-  <button type="submit">Submit</button>
+  </fieldset>
+    <br>
+  <button class="btn btn-success" type="submit">Submit</button>
 </form>
+
+{% endblock %}

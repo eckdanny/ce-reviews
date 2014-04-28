@@ -1,15 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ supplier.name }}{% endblock %}
+
+{% block content %}
+  <h2>{{ supplier.name }} Reviews:</h2>
 {% if reviews %}
   <h3>Reviews for {{ supplier.name }}</h3>
-  <ul>
   {% for review in reviews %}
-    <li>
-      <p>{{ review.review }}</p>
-      <p>{{ review.author }}</p>
-      <h3>{{ review.rating }}</h3>
-    </li>
+
+      <div class="panel panel-default">
+          <div class="panel-heading"><strong>{{ review.author }}</strong> said:
+              <span class="pull-right">{{ review.created }}</span></div>
+          <div class="panel-body">
+             <p class="lead">{{ review.rating }}</p>
+              <div>
+                  {{ review.review }}
+              </div>
+          </div>
+       </div>
+
   {% endfor %}
 {% else %}
   <p>There aren't any published reviews for {{ supplier.name }} yet!</p>
 {% endif %}
-<p>Write a review <a href="/reviews/{{ supplier.slug }}/write/">here</a>!</p>
-<p>Got back to <a href="/reviews/">suppliers</a></p>
+
+<hr>
+<p><a class="btn btn-success" href="/reviews/{{ supplier.slug }}/write/">Add Review</a></p>
+<p><a href="/reviews/">Back to Suppliers</a></p>
+
+{% endblock %}
